@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taqnin ID Batch v2 — Présentation</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green:   #1a6b3a;
+    --green-l: #2d9b55;
+    --gold:    #c9921a;
+    --gold-l:  #e8b43a;
+    --cream:   #f5f0e8;
+    --dark:    #111a14;
+    --mid:     #2c3e30;
+    --text:    #1c2a1f;
+    --muted:   #6b7f6e;
+    --border:  #d4e0d6;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'IBM Plex Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(17, 26, 20, 0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201, 146, 26, 0.3);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 56px;
+  }
+  .nav-logo {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem; font-weight: 600;
+    color: var(--gold-l);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .nav-links {
+    display: flex; gap: 0.25rem;
+    list-style: none;
+  }
+  .nav-links a {
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    font-size: 0.72rem;
+    padding: 0.3rem 0.7rem;
+    border-radius: 4px;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .nav-links a:hover { color: var(--gold-l); background: rgba(201,146,26,0.1); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--dark);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 80px 2rem 4rem;
+    text-align: center;
+  }
+
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(45,155,85,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(45,155,85,0.06) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .hero-glow {
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(26,107,58,0.25) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -55%);
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(201,146,26,0.15);
+    border: 1px solid rgba(201,146,26,0.4);
+    color: var(--gold-l);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem; letter-spacing: 0.12em;
+    padding: 0.35rem 1rem;
+    border-radius: 20px;
+    margin-bottom: 2rem;
+    position: relative; z-index: 1;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero-badge::before {
+    content: '';
+    display: inline-block;
+    width: 6px; height: 6px;
+    background: var(--green-l);
+    border-radius: 50%;
+    animation: pulse 2s ease infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 900;
+    color: white;
+    line-height: 1.05;
+    position: relative; z-index: 1;
+    animation: fadeUp 0.7s 0.1s ease both;
+  }
+  .hero h1 span { color: var(--gold-l); }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.55);
+    max-width: 540px;
+    margin: 1.5rem auto 0;
+    font-weight: 300;
+    position: relative; z-index: 1;
+    animation: fadeUp 0.7s 0.2s ease both;
+  }
+
+  .hero-stats {
+    display: flex; gap: 3rem;
+    margin-top: 3.5rem;
+    position: relative; z-index: 1;
+    animation: fadeUp 0.7s 0.3s ease both;
+  }
+  .hero-stat { text-align: center; }
+  .hero-stat .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem; font-weight: 700;
+    color: var(--gold-l);
+    display: block;
+  }
+  .hero-stat .lbl {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .scroll-hint {
+    position: absolute; bottom: 2rem;
+    color: rgba(255,255,255,0.3);
+    font-size: 0.7rem;
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 0.1em;
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    animation: bounce 2s ease infinite;
+  }
+  .scroll-hint::after {
+    content: '↓';
+    font-size: 1rem;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 5rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--green-l);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .section-label::before {
+    content: '';
+    display: inline-block;
+    width: 24px; height: 1px;
+    background: var(--green-l);
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    color: var(--dark);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+  .section-title span { color: var(--green); }
+
+  .section-desc {
+    color: var(--muted);
+    font-size: 0.95rem;
+    max-width: 580px;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+  }
+
+  /* ── FLOW / PIPELINE ── */
+  .pipeline-bg {
+    background: var(--dark);
+    padding: 5rem 2rem;
+  }
+  .pipeline-inner { max-width: 1100px; margin: 0 auto; }
+  .pipeline-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 700; color: white;
+    margin-bottom: 0.5rem;
+  }
+  .pipeline-sub { color: rgba(255,255,255,0.45); font-size: 0.9rem; margin-bottom: 3rem; }
+
+  .flow-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .flow-step {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 0 1.5rem;
+    position: relative;
+  }
+  .flow-step:not(:last-child) .step-line { display: block; }
+  .step-left { display: flex; flex-direction: column; align-items: center; }
+  .step-dot {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    border: 2px solid transparent;
+    position: relative; z-index: 1;
+  }
+  .step-line {
+    display: none;
+    width: 2px;
+    flex: 1;
+    min-height: 24px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.15), rgba(255,255,255,0.05));
+    margin: 4px 0;
+  }
+  .step-content {
+    padding: 0 0 2rem 0;
+  }
+  .step-header {
+    display: flex; align-items: center; gap: 0.75rem;
+    margin-bottom: 0.4rem;
+    flex-wrap: wrap;
+  }
+  .step-name {
+    font-weight: 600; color: white;
+    font-size: 0.95rem;
+  }
+  .step-code {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    background: rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.5);
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+  }
+  .step-desc { color: rgba(255,255,255,0.45); font-size: 0.82rem; line-height: 1.5; }
+
+  .biochar-branch {
+    margin-left: 64px;
+    margin-top: -1rem;
+    margin-bottom: 1rem;
+    padding: 0.75rem 1rem;
+    border-left: 3px solid #c97c1a;
+    background: rgba(201,124,26,0.08);
+    border-radius: 0 8px 8px 0;
+  }
+  .biochar-branch .b-header {
+    display: flex; align-items: center; gap: 0.5rem;
+    margin-bottom: 0.25rem;
+  }
+  .biochar-branch .b-name { color: #e8b43a; font-weight: 600; font-size: 0.88rem; }
+  .biochar-branch .b-desc { color: rgba(255,255,255,0.4); font-size: 0.78rem; }
+
+  /* step colors */
+  .s1 { background: rgba(34,197,94,0.15); border-color: #22c55e; }
+  .s2 { background: rgba(234,179,8,0.15);  border-color: #eab308; }
+  .s3 { background: rgba(249,115,22,0.15); border-color: #f97316; }
+  .s4 { background: rgba(168,85,247,0.15); border-color: #a855f7; }
+  .s5 { background: rgba(139,92,246,0.15); border-color: #8b5cf6; }
+  .s6 { background: rgba(59,130,246,0.15); border-color: #3b82f6; }
+  .s7 { background: rgba(107,114,128,0.15);border-color: #6b7280; }
+
+  /* ── MODULES GRID ── */
+  .modules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+  .module-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .module-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--accent-color, var(--green));
+  }
+  .module-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(26,107,58,0.12);
+    border-color: var(--green-l);
+  }
+  .module-icon {
+    font-size: 1.8rem; margin-bottom: 0.75rem; display: block;
+  }
+  .module-title {
+    font-weight: 600; font-size: 0.95rem;
+    color: var(--dark); margin-bottom: 0.3rem;
+  }
+  .module-code {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem; color: var(--muted);
+    margin-bottom: 0.75rem;
+  }
+  .module-desc {
+    font-size: 0.82rem; color: var(--muted);
+    line-height: 1.6; margin-bottom: 1rem;
+  }
+  .module-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .tag {
+    font-size: 0.65rem;
+    padding: 0.2rem 0.55rem;
+    border-radius: 20px;
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 0.03em;
+  }
+  .tag-green  { background: #dcfce7; color: #166534; }
+  .tag-amber  { background: #fef9c3; color: #854d0e; }
+  .tag-purple { background: #f3e8ff; color: #6b21a8; }
+  .tag-blue   { background: #dbeafe; color: #1e40af; }
+  .tag-red    { background: #fee2e2; color: #991b1b; }
+  .tag-orange { background: #ffedd5; color: #9a3412; }
+  .tag-stone  { background: #f5f5f4; color: #57534e; }
+
+  /* ── ROLES ── */
+  .roles-bg {
+    background: linear-gradient(135deg, #0f1f13 0%, #1a2f1d 100%);
+    padding: 5rem 2rem;
+  }
+  .roles-inner { max-width: 1100px; margin: 0 auto; }
+  .roles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 2.5rem;
+  }
+  .role-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 1.25rem;
+    transition: all 0.2s;
+  }
+  .role-card:hover {
+    background: rgba(255,255,255,0.07);
+    border-color: rgba(45,155,85,0.4);
+  }
+  .role-icon { font-size: 1.6rem; margin-bottom: 0.6rem; display: block; }
+  .role-name {
+    font-weight: 600; color: white; font-size: 0.88rem;
+    margin-bottom: 0.35rem;
+  }
+  .role-desc { font-size: 0.78rem; color: rgba(255,255,255,0.4); line-height: 1.5; }
+
+  /* ── CORRIDORS ── */
+  .corridors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+  }
+  .corridor-card {
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 2px solid transparent;
+  }
+  .corridor-thc { background: #f0fdf4; border-color: #86efac; }
+  .corridor-1   { background: #fffbeb; border-color: #fcd34d; }
+  .corridor-dom { background: #fff1f2; border-color: #fca5a5; }
+  .corridor-head {
+    display: flex; align-items: center; gap: 0.6rem;
+    margin-bottom: 0.75rem;
+  }
+  .corridor-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem; font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+  }
+  .cb-green { background: #dcfce7; color: #166534; }
+  .cb-amber { background: #fef9c3; color: #854d0e; }
+  .cb-red   { background: #fee2e2; color: #991b1b; }
+  .corridor-name {
+    font-weight: 700; font-size: 0.95rem;
+  }
+  .corridor-sub { font-size: 0.8rem; color: var(--muted); margin-bottom: 0.75rem; }
+  .corridor-items { list-style: none; }
+  .corridor-items li {
+    font-size: 0.78rem; color: var(--muted);
+    padding: 0.2rem 0;
+    display: flex; align-items: flex-start; gap: 0.4rem;
+  }
+  .corridor-items li::before { content: '→'; color: var(--muted); flex-shrink: 0; }
+
+  /* ── ANRAC ── */
+  .anrac-bg {
+    background: white;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 5rem 2rem;
+  }
+  .anrac-inner { max-width: 1100px; margin: 0 auto; }
+  .anrac-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+  }
+  .anrac-feat {
+    padding: 1.25rem;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--cream);
+  }
+  .anrac-feat-icon {
+    font-size: 1.5rem; margin-bottom: 0.6rem; display: block;
+  }
+  .anrac-feat-title { font-weight: 600; font-size: 0.88rem; color: var(--dark); margin-bottom: 0.3rem; }
+  .anrac-feat-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+
+  /* ── QR ── */
+  .qr-section {
+    background: linear-gradient(135deg, var(--green) 0%, #0d3d1f 100%);
+    padding: 5rem 2rem;
+  }
+  .qr-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+    align-items: center;
+  }
+  .qr-text .section-label { color: var(--gold-l); }
+  .qr-text .section-label::before { background: var(--gold-l); }
+  .qr-text .section-title { color: white; }
+  .qr-text .section-desc { color: rgba(255,255,255,0.6); max-width: 440px; margin-bottom: 2rem; }
+  .qr-features { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+  .qr-features li {
+    display: flex; align-items: flex-start; gap: 0.75rem;
+    color: rgba(255,255,255,0.75);
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+  .qr-features li::before {
+    content: '✓';
+    color: var(--gold-l);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .qr-visual {
+    display: flex; justify-content: center; align-items: center;
+  }
+  .qr-mockup {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+    max-width: 280px; width: 100%;
+  }
+  .qr-box {
+    width: 140px; height: 140px;
+    background: white;
+    border-radius: 8px;
+    margin: 0 auto 1rem;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .qr-box::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg, transparent, transparent 8px,
+      rgba(26,107,58,0.04) 8px, rgba(26,107,58,0.04) 10px
+    ),
+    repeating-linear-gradient(
+      90deg, transparent, transparent 8px,
+      rgba(26,107,58,0.04) 8px, rgba(26,107,58,0.04) 10px
+    );
+  }
+  .qr-code-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--gold-l);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.35rem;
+  }
+  .qr-code-val {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    color: white;
+    font-weight: 600;
+  }
+  .qr-meta {
+    margin-top: 1rem;
+    display: flex; flex-direction: column; gap: 0.3rem;
+  }
+  .qr-meta-row {
+    display: flex; justify-content: space-between;
+    font-size: 0.68rem;
+    color: rgba(255,255,255,0.4);
+    border-top: 1px solid rgba(255,255,255,0.07);
+    padding-top: 0.3rem;
+  }
+  .qr-meta-row span:last-child { color: rgba(255,255,255,0.7); }
+
+  /* ── TECH STACK ── */
+  .stack-grid {
+    display: flex; flex-wrap: wrap; gap: 0.75rem;
+    margin-top: 2rem;
+  }
+  .stack-pill {
+    display: flex; align-items: center; gap: 0.4rem;
+    padding: 0.4rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--mid);
+    background: white;
+    transition: all 0.2s;
+  }
+  .stack-pill:hover {
+    border-color: var(--green-l);
+    color: var(--green);
+    background: #f0fdf4;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 700;
+    color: white; margin-bottom: 0.5rem;
+  }
+  .footer-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem; color: rgba(255,255,255,0.3);
+    letter-spacing: 0.15em; text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  .footer-note {
+    font-size: 0.75rem; color: rgba(255,255,255,0.2);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .hero-stats { gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+    .qr-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Taqnin ID Batch · v2</div>
+  <ul class="nav-links">
+    <li><a href="#flow">Flux</a></li>
+    <li><a href="#modules">Modules</a></li>
+    <li><a href="#roles">Rôles</a></li>
+    <li><a href="#corridors">Corridors</a></li>
+    <li><a href="#anrac">ANRAC</a></li>
+    <li><a href="#qr">QR / Traçabilité</a></li>
+    <li><a href="#tech">Stack</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-badge">Version 2.0 — Mars 2026</div>
+  <h1>Taqnin<br><span>ID Batch</span></h1>
+  <p class="hero-sub">Plateforme de traçabilité réglementaire du cannabis au Maroc — de la graine au marché, chaque gramme suivi.</p>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <span class="num">7</span>
+      <span class="lbl">étapes de flux</span>
+    </div>
+    <div class="hero-stat">
+      <span class="num">6</span>
+      <span class="lbl">modules métier</span>
+    </div>
+    <div class="hero-stat">
+      <span class="num">5</span>
+      <span class="lbl">rôles utilisateurs</span>
+    </div>
+    <div class="hero-stat">
+      <span class="num">16</span>
+      <span class="lbl">types de batch</span>
+    </div>
+  </div>
+  <div class="scroll-hint">Découvrir</div>
+</div>
+
+<!-- FLUX SEED TO SALE -->
+<div class="pipeline-bg" id="flow">
+  <div class="pipeline-inner">
+    <div class="section-label" style="color:rgba(45,155,85,0.8)">
+      <span style="display:inline-block;width:24px;height:1px;background:rgba(45,155,85,0.8)"></span>
+      Seed-to-Sale & Seed-to-Batch
+    </div>
+    <h2 class="pipeline-title">Le flux complet en <span style="color:var(--gold-l)">7 étapes</span></h2>
+    <p class="pipeline-sub">Chaque étape génère un batch tracé, un QR code unique et un enregistrement Supabase immuable.</p>
+
+    <div class="flow-steps">
+
+      <div class="flow-step">
+        <div class="step-left">
+          <div class="step-dot s1">🌿</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-content">
+          <div class="step-header">
+            <span class="step-name">Harvest Batch</span>
+            <span class="step-code">HB-CHA-2026-07-15-001</span>
+          </div>
+          <p class="step-desc">Saisie agronomique complète : variété (registre génétique), parcelle, altitude, coordonnées GPS, poids humide, date récolte, coopérative. Génération automatique du QR Taqnin ID.</p>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="step-left">
+          <div class="step-dot s2">☀️</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-content">
+          <div class="step-header">
+            <span class="step-name">Dry Biomass Batch</span>
+            <span class="step-code">DBB-KET-2026-07-30-002</span>
+          </div>
+          <p class="step-desc">Deux méthodes : Séchage classique HACCP (4 CCPs surveillés : T°, humidité, durée, microbiologie) ou Fresh Frozen (-18°C → -80°C) pour extraction live. COA laboratoire obligatoire.</p>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="step-left">
+          <div class="step-dot s3">⚙️</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-content">
+          <div class="step-header">
+            <span class="step-name">Tri Industriel</span>
+            <span class="step-code">ERB / SB / BB / DB / WB</span>
+          </div>
+          <p class="step-desc">1 DBB → 5 flux traçables en parallèle. Bilan matière temps réel avec alerte anti-détournement (tolérance ±5%). Chaque flux reçoit son propre batch code et QR.</p>
+        </div>
+      </div>
+
+      <!-- Biochar branch -->
+      <div class="biochar-branch">
+        <div class="b-header">
+          <span>🌹</span>
+          <span class="b-name">Biochar — The Rose of Peace</span>
+          <span class="step-code" style="color:#e8b43a;background:rgba(201,146,26,0.15)">BCH- / CCB-</span>
+        </div>
+        <p class="b-desc">BB + DB + WB → Pyrolyse (lente, rapide, gazéification, torréfaction) → Biochar certifié EBC/IBI + Crédits carbone Verra VCS / Gold Standard. Valorise 100% des déchets.</p>
+      </div>
+
+      <div class="flow-step">
+        <div class="step-left">
+          <div class="step-dot s4">🔬</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-content">
+          <div class="step-header">
+            <span class="step-name">Extraction Batch</span>
+            <span class="step-code">EXB-TAO-2026-08-01-010</span>
+          </div>
+          <p class="step-desc">9 méthodes d'extraction : CO₂ supercritique/subcritique, Rosin press, Ice Water Hash, Dry Sieve, Live Rosin, Éthanol froid, Huile d'olive, Distillation vapeur. Rendement et paramètres procédé enregistrés.</p>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="step-left">
+          <div class="step-dot s5">⚗️</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-content">
+          <div class="step-header">
+            <span class="step-name">KETAMIX Batch</span>
+            <span class="step-code">KMX-MA-2026-08-15-001</span>
+          </div>
+          <p class="step-desc">Assemblage et standardisation des cannabinoïdes. 4 formules : CBD Dom · Balance · CBG Rich · API Grade (GMP EU). Base de tous les produits finis KETAMIX / Chanvre du Maroc.</p>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="step-left">
+          <div class="step-dot s6">💊</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-content">
+          <div class="step-header">
+            <span class="step-name">Produits Finis</span>
+            <span class="step-code">API / CAP / OIL / SUP / TCT / TOP</span>
+          </div>
+          <p class="step-desc">6 formes galéniques : API Pharma, Gélules, Huile CBD, Suppositoires, Teintures, Topiques. Conformité EU Novel Food 2015/2283 et GMP EU selon destination.</p>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="step-left">
+          <div class="step-dot s7">✈️</div>
+        </div>
+        <div class="step-content">
+          <div class="step-header">
+            <span class="step-name">Export Batch</span>
+            <span class="step-code">EXP-MA-2026-09-01-001</span>
+          </div>
+          <p class="step-desc">Constitution du dossier export : certificat d'origine, phytosanitaire, dossier GMP EU, notification INCB si THC dominant. Lot scellé et prêt à l'expédition internationale.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- MODULES -->
+<section id="modules">
+  <div class="section-label">Modules métier</div>
+  <h2 class="section-title">6 modules <span>spécialisés</span></h2>
+  <p class="section-desc">Chaque module couvre une étape de la chaîne avec ses paramètres procédé, ses alertes réglementaires et son générateur de batch tracé.</p>
+
+  <div class="modules-grid">
+
+    <div class="module-card" style="--accent-color: #22c55e">
+      <span class="module-icon">🌿</span>
+      <div class="module-title">Harvest Batch</div>
+      <div class="module-code">CreateHarvestBatch.tsx</div>
+      <div class="module-desc">Formulaire agronomique complet avec sélection variété depuis le registre génétique, géolocalisation parcelle, poids humide, sélection du corridor THC et alertes export automatiques.</div>
+      <div class="module-tags">
+        <span class="tag tag-green">Registre génétique</span>
+        <span class="tag tag-amber">GPS coordonnées</span>
+        <span class="tag tag-blue">QR auto</span>
+      </div>
+    </div>
+
+    <div class="module-card" style="--accent-color: #eab308">
+      <span class="module-icon">☀️</span>
+      <div class="module-title">Séchage HACCP / Fresh Frozen</div>
+      <div class="module-code">CreateDryingBatch.tsx</div>
+      <div class="module-desc">Contrôle des 4 CCPs avec sliders interactifs (T° max 35°C, humidité cible &lt;12%). Mode Fresh Frozen pour extraction live resin. COA microbiologie avec champs aflatoxines et pesticides.</div>
+      <div class="module-tags">
+        <span class="tag tag-amber">HACCP 4 CCPs</span>
+        <span class="tag tag-blue">Fresh Frozen</span>
+        <span class="tag tag-green">COA micro</span>
+      </div>
+    </div>
+
+    <div class="module-card" style="--accent-color: #f97316">
+      <span class="module-icon">⚙️</span>
+      <div class="module-title">Tri Industriel</div>
+      <div class="module-code">TriIndustriel.tsx</div>
+      <div class="module-desc">Dispatching d'un DBB vers 5 flux simultanés (ERB, SB, BB, DB, WB). Bilan matière en temps réel, tolérance de perte paramétrable, alerte anti-détournement intégrée. Compatible GMP EU.</div>
+      <div class="module-tags">
+        <span class="tag tag-orange">5 flux parallèles</span>
+        <span class="tag tag-red">Anti-détournement</span>
+        <span class="tag tag-purple">GMP EU</span>
+      </div>
+    </div>
+
+    <div class="module-card" style="--accent-color: #a855f7">
+      <span class="module-icon">🔬</span>
+      <div class="module-title">Extraction</div>
+      <div class="module-code">ExtractionModule.tsx</div>
+      <div class="module-desc">9 méthodes d'extraction avec paramètres procédé spécifiques, rendement saisi et calcul du taux de récupération. Indicateur GMP / Pharma Grade par méthode. Génération EXB avec traçabilité complète.</div>
+      <div class="module-tags">
+        <span class="tag tag-purple">CO₂ supercritique</span>
+        <span class="tag tag-blue">Solventless</span>
+        <span class="tag tag-green">Live Rosin</span>
+      </div>
+    </div>
+
+    <div class="module-card" style="--accent-color: #8b5cf6">
+      <span class="module-icon">⚗️</span>
+      <div class="module-title">KETAMIX</div>
+      <div class="module-code">KetamixModule.tsx</div>
+      <div class="module-desc">Assemblage multi-EXB et standardisation. 4 formules cibles (CBD Dom, Balance, CBG Rich, API Grade). Calcul de conformité cannabinoïde automatique. Certification EU Novel Food 2015/2283 + GMP EU.</div>
+      <div class="module-tags">
+        <span class="tag tag-purple">Standardisation</span>
+        <span class="tag tag-green">Novel Food</span>
+        <span class="tag tag-blue">6 produits finis</span>
+      </div>
+    </div>
+
+    <div class="module-card" style="--accent-color: #c97c1a">
+      <span class="module-icon">🌹</span>
+      <div class="module-title">Biochar — The Rose of Peace</div>
+      <div class="module-code">BiocharModule.tsx</div>
+      <div class="module-desc">Valorisation à 100% des déchets cannabis (BB+DB+WB) par pyrolyse. 4 méthodes avec bilan carbone calculé automatiquement. Génération de crédits carbone Verra VCS / Gold Standard. Certification EBC/IBI.</div>
+      <div class="module-tags">
+        <span class="tag tag-stone">Pyrolyse</span>
+        <span class="tag tag-green">Crédits carbone</span>
+        <span class="tag tag-amber">EBC / Verra VCS</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- RÔLES -->
+<div class="roles-bg" id="roles">
+  <div class="roles-inner">
+    <div class="section-label" style="color:rgba(45,155,85,0.8)">
+      <span style="display:inline-block;width:24px;height:1px;background:rgba(45,155,85,0.8)"></span>
+      Contrôle d'accès
+    </div>
+    <h2 class="pipeline-title" style="font-family:'Playfair Display',serif">5 rôles <span style="color:var(--gold-l)">distincts</span></h2>
+    <p class="pipeline-sub">Chaque utilisateur voit uniquement son espace métier. Le dashboard s'adapte au rôle connecté.</p>
+
+    <div class="roles-grid">
+      <div class="role-card">
+        <span class="role-icon">🛡️</span>
+        <div class="role-name">ANRAC</div>
+        <div class="role-desc">Régulateur national. Accès dashboard complet, alertes, quotas, bilan matière, déclarations périodiques et rapport PDF.</div>
+      </div>
+      <div class="role-card">
+        <span class="role-icon">🏭</span>
+        <div class="role-name">Opérateur</div>
+        <div class="role-desc">Producteur / transformateur agréé. Création et suivi de ses propres batchs, statistiques parcelles et lots.</div>
+      </div>
+      <div class="role-card">
+        <span class="role-icon">🌱</span>
+        <div class="role-name">Nursery</div>
+        <div class="role-desc">Pépiniériste. Gestion des variétés, semences et plants. Vue sur le registre génétique et les corridors THC.</div>
+      </div>
+      <div class="role-card">
+        <span class="role-icon">🔍</span>
+        <div class="role-name">ONSSA</div>
+        <div class="role-desc">Contrôle sanitaire. Accès aux COA, résultats microbiologiques et conformités HACCP des batchs de séchage.</div>
+      </div>
+      <div class="role-card">
+        <span class="role-icon">🤝</span>
+        <div class="role-name">Client</div>
+        <div class="role-desc">Acheteur / importateur. Vue sur les lots validés disponibles, certificats et documentation export.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CORRIDORS -->
+<section id="corridors">
+  <div class="section-label">Génétique & Réglementation</div>
+  <h2 class="section-title">3 corridors <span>THC</span></h2>
+  <p class="section-desc">Le registre génétique intègre 8 variétés cataloguées avec leurs profils cannabinoïdes, zones de culture, restrictions export et formules KETAMIX recommandées.</p>
+
+  <div class="corridors-grid">
+
+    <div class="corridor-card corridor-thc">
+      <div class="corridor-head">
+        <span class="corridor-badge cb-green">≤ 0.3% THC</span>
+        <span class="corridor-name" style="color:#166534">Corridor EU Standard</span>
+      </div>
+      <p class="corridor-sub">3 variétés cataloguées — Conforme EU Novel Food</p>
+      <ul class="corridor-items">
+        <li>Beldiya CBD (8–22% CBD)</li>
+        <li>Sativa locale CBD (5–18% CBD)</li>
+        <li>CBG Rich (8–20% CBG)</li>
+        <li>Export UE sans restriction principale</li>
+        <li>Novel Food 2015/2283 applicable</li>
+      </ul>
+    </div>
+
+    <div class="corridor-card corridor-1">
+      <div class="corridor-head">
+        <span class="corridor-badge cb-amber">0.3–1% THC</span>
+        <span class="corridor-name" style="color:#854d0e">Corridor Maroc / Suisse</span>
+      </div>
+      <p class="corridor-sub">3 variétés — Loi 13-21 — Export conditionnel</p>
+      <ul class="corridor-items">
+        <li>Beldiya (Corridor 1%) — cultivar ancestral Rif</li>
+        <li>Ketama Gold (Khardala) — 1400–2400 m</li>
+        <li>Hybrid CBD/THC équilibré</li>
+        <li>Autorisé Maroc + Suisse ≤1%</li>
+        <li>Export EU : vérification pays destination</li>
+      </ul>
+    </div>
+
+    <div class="corridor-card corridor-dom">
+      <div class="corridor-head">
+        <span class="corridor-badge cb-red">THC Dominant</span>
+        <span class="corridor-name" style="color:#991b1b">Médical / Recherche</span>
+      </div>
+      <p class="corridor-sub">2 variétés — Autorisation ANRAC spéciale requise</p>
+      <ul class="corridor-items">
+        <li>Beldiya THC Dominant (5–25% THC)</li>
+        <li>Beldiya Medical Grade (10–20% THC)</li>
+        <li>GMP EU Annexe 2 obligatoire</li>
+        <li>Quota INCB + ANRAC requis</li>
+        <li>Export DE, FR, UK, Canada uniquement</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ANRAC DASHBOARD -->
+<div class="anrac-bg" id="anrac">
+  <div class="anrac-inner">
+    <div class="section-label">Reporting réglementaire</div>
+    <h2 class="section-title">Dashboard <span>ANRAC</span></h2>
+    <p class="section-desc">Interface réglementaire complète avec auto-refresh toutes les 5 minutes. 6 onglets couvrant l'ensemble des obligations de la Loi 13-21.</p>
+
+    <div class="anrac-features">
+      <div class="anrac-feat">
+        <span class="anrac-feat-icon">📊</span>
+        <div class="anrac-feat-title">Vue globale</div>
+        <div class="anrac-feat-desc">KPIs temps réel : total batchs, kg produits, alertes actives, répartition par corridor THC, flux de production annuel.</div>
+      </div>
+      <div class="anrac-feat">
+        <span class="anrac-feat-icon">🚨</span>
+        <div class="anrac-feat-title">Alertes</div>
+        <div class="anrac-feat-desc">4 niveaux de sévérité (bloquant → info). Résolution manuelle avec note. Badge animé pour alertes bloquantes.</div>
+      </div>
+      <div class="anrac-feat">
+        <span class="anrac-feat-icon">⚖️</span>
+        <div class="anrac-feat-title">Quotas annuels</div>
+        <div class="anrac-feat-desc">Suivi quota alloué vs consommé par type de batch et corridor. Seuils visuels 80%, 90%, 100%. Création de nouveaux quotas par décision ANRAC.</div>
+      </div>
+      <div class="anrac-feat">
+        <span class="anrac-feat-icon">👥</span>
+        <div class="anrac-feat-title">Opérateurs</div>
+        <div class="anrac-feat-desc">Rapport d'activité par opérateur : nb batchs par étape, kg total, lots en attente de validation, numéro de licence ANRAC.</div>
+      </div>
+      <div class="anrac-feat">
+        <span class="anrac-feat-icon">📉</span>
+        <div class="anrac-feat-title">Bilan matière</div>
+        <div class="anrac-feat-desc">Tableau annuel entrées/sorties par type de batch. Taux de perte avec code couleur (vert &lt;25%, orange 25–40%, rouge &gt;40%).</div>
+      </div>
+      <div class="anrac-feat">
+        <span class="anrac-feat-icon">📋</span>
+        <div class="anrac-feat-title">Déclarations</div>
+        <div class="anrac-feat-desc">Déclarations mensuelles et trimestrielles avec statuts (draft → submitted → acknowledged). Rappel des délais légaux Loi 13-21.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- QR / TRAÇABILITÉ -->
+<div class="qr-section" id="qr">
+  <div class="qr-inner">
+    <div class="qr-text">
+      <div class="section-label">Traçabilité & Authenticité</div>
+      <h2 class="section-title">QR Code <span>Taqnin ID</span></h2>
+      <p class="section-desc">Chaque batch génère automatiquement un QR code unique, imprimable et vérifiable publiquement sans connexion.</p>
+      <ul class="qr-features">
+        <li>Format TAQ-MA-ZONE-YYYY-TYPE-XXXXXX — identifiant national unique</li>
+        <li>Page publique /verify/:batchCode — accessible sans authentification</li>
+        <li>QR téléchargeable en PNG haute résolution (400px)</li>
+        <li>Impression étiquette directe depuis le navigateur</li>
+        <li>Données encodées : variété, corridor THC, poids, statut, date validation</li>
+        <li>Seuls les batchs validés sont accessibles publiquement</li>
+      </ul>
+    </div>
+    <div class="qr-visual">
+      <div class="qr-mockup">
+        <div class="qr-box">📱</div>
+        <div class="qr-code-label">TAQNIN ID BATCH</div>
+        <div class="qr-code-val">TAQ-MA-KET-2026-HB-000247</div>
+        <div class="qr-meta">
+          <div class="qr-meta-row"><span>Type</span><span>🌿 Harvest Batch</span></div>
+          <div class="qr-meta-row"><span>Variété</span><span>Beldiya CBD</span></div>
+          <div class="qr-meta-row"><span>Corridor</span><span>0.3% EU ✅</span></div>
+          <div class="qr-meta-row"><span>Zone</span><span>Ketama · 1600m</span></div>
+          <div class="qr-meta-row"><span>Statut</span><span style="color:#4ade80">● Validé</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STACK TECHNIQUE -->
+<section id="tech">
+  <div class="section-label">Stack technique</div>
+  <h2 class="section-title">Technologies <span>& Architecture</span></h2>
+  <p class="section-desc">Application React full-stack avec backend serverless Supabase. Déployable sur Lovable en un clic. Code base TypeScript strict avec shadcn/ui et Tailwind.</p>
+
+  <div class="stack-grid">
+    <div class="stack-pill">⚡ Vite + React 18</div>
+    <div class="stack-pill">🔷 TypeScript strict</div>
+    <div class="stack-pill">🎨 Tailwind CSS</div>
+    <div class="stack-pill">🧱 shadcn/ui</div>
+    <div class="stack-pill">🗄️ Supabase (PostgreSQL)</div>
+    <div class="stack-pill">🔐 Supabase Auth (RLS)</div>
+    <div class="stack-pill">📦 TanStack Query</div>
+    <div class="stack-pill">🔀 React Router v6</div>
+    <div class="stack-pill">📱 QRCode.react</div>
+    <div class="stack-pill">🔔 Sonner (toasts)</div>
+    <div class="stack-pill">🚀 Lovable Deploy</div>
+    <div class="stack-pill">📊 6 migrations SQL v2</div>
+  </div>
+
+  <div style="margin-top: 3rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.25rem;">
+    <div style="background: white; border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem;">
+      <div style="font-size: 0.7rem; font-family: 'IBM Plex Mono', monospace; color: var(--muted); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.1em;">Base de données</div>
+      <div style="font-size: 0.82rem; color: var(--text); line-height: 1.6;">6 migrations SQL chronologiques. Tables : batch_nodes, operators, parcels, anrac_alerts, anrac_quotas, anrac_declarations. Vues matérialisées pour le dashboard ANRAC.</div>
+    </div>
+    <div style="background: white; border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem;">
+      <div style="font-size: 0.7rem; font-family: 'IBM Plex Mono', monospace; color: var(--muted); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.1em;">Sécurité</div>
+      <div style="font-size: 0.82rem; color: var(--text); line-height: 1.6;">Row Level Security (RLS) Supabase par rôle. Seule la route /verify est publique. Chaque rôle ne voit que ses propres données via policies PostgreSQL.</div>
+    </div>
+    <div style="background: white; border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem;">
+      <div style="font-size: 0.7rem; font-family: 'IBM Plex Mono', monospace; color: var(--muted); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.1em;">Codification</div>
+      <div style="font-size: 0.82rem; color: var(--text); line-height: 1.6;">16 types de batch avec préfixe standardisé. Codes : TYPE-ZONE-YYYY-MM-DD-SEQ. QR global : TAQ-MA-ZONE-YYYY-TYPE-XXXXXX. Zones : CHA, KET, TAO, ALH, FES, TAZ…</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Taqnin ID Batch</div>
+  <div class="footer-sub">KETAMIX / Chanvre du Maroc — v2.0 — Mars 2026</div>
+  <div class="footer-note">Plateforme de traçabilité réglementaire — Loi 13-21 — ANRAC Maroc</div>
+</footer>
+
+<script>
+  // Animate elements on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.module-card, .role-card, .corridor-card, .anrac-feat, .flow-step').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(16px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
