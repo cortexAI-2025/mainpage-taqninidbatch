@@ -2,7 +2,9 @@
 
 > Plateforme web de traçabilité des lots de cannabis licite au Maroc, conçue par AIWorkPay.
 
-Site officiel : https://taqninidbatch.com/
+Site officiel (FR) : https://taqninidbatch.com/
+English : https://taqninidbatch.com/en/
+العربية : https://taqninidbatch.com/ar/
 Contact : contact@aiworkpay.fr
 Langues de l'application : français, arabe et anglais.
 
@@ -23,7 +25,9 @@ Langues de l'application : français, arabe et anglais.
 
 ## Pages et données structurées
 
-- [Présentation officielle](https://taqninidbatch.com/) — description publique et contact.
+- [Présentation française](https://taqninidbatch.com/) — description publique et contact.
+- [English presentation](https://taqninidbatch.com/en/).
+- [الصفحة العربية](https://taqninidbatch.com/ar/).
 - [Plan de site](https://taqninidbatch.com/sitemap.xml).
 - La page d'accueil publie des données Schema.org WebSite, Organization et SoftwareApplication au format JSON-LD.
 
