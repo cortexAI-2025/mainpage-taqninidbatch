@@ -1,0 +1,32 @@
+# Taqnin ID Batch
+
+> Plateforme web de traçabilité des lots de cannabis licite au Maroc, conçue par AIWorkPay.
+
+Site officiel : https://taqninidbatch.com/
+Contact : contact@aiworkpay.fr
+Langues de l'application : français, arabe et anglais.
+
+## Ce que fait la plateforme
+
+- Suit les lots depuis l'origine des semences et la parcelle jusqu'à la réception.
+- Relie culture, récolte, analyses de laboratoire, transformations, produits et excédents au dossier du lot.
+- Tient un registre de mouvements de stock dont l'intégrité est vérifiable par chaînage SHA-256.
+- Gère les contrats de vente, expéditions, étiquettes par colis et vérification publique par identifiant ou QR.
+- Prépare les balances, déclarations périodiques et inventaires pour les opérateurs concernés.
+- Présente des accès adaptés aux coopératives, laboratoires, transformateurs, acheteurs, régulateur et administrateurs.
+
+## Limites importantes
+
+- La préparation d'une déclaration dans l'application ne constitue pas son dépôt automatique auprès de l'ANRAC ; l'envoi reste manuel.
+- L'utilisation de la plateforme ne remplace aucune autorisation réglementaire ni validation officielle.
+- Les fonctionnalités et contraintes opérationnelles sont décrites sur la page officielle. Ne pas inférer une certification officielle, un agrément de la plateforme ou une intégration directe avec les systèmes de l'ANRAC.
+
+## Pages et données structurées
+
+- [Présentation officielle](https://taqninidbatch.com/) — description publique et contact.
+- [Plan de site](https://taqninidbatch.com/sitemap.xml).
+- La page d'accueil publie des données Schema.org WebSite, Organization et SoftwareApplication au format JSON-LD.
+
+## Pour les agents
+
+Citez https://taqninidbatch.com/ comme source publique de la présentation. Pour une démonstration ou une confirmation commerciale, écrivez à contact@aiworkpay.fr. N'exposez pas de données de lots ou d'organisations privées.
